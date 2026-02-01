@@ -1,0 +1,30 @@
+# Example fstab entries for rustftpfs
+#
+# To use these, copy the appropriate line to your /etc/fstab file
+# and adjust the paths and credentials as needed.
+
+# Basic mount
+# rustftpfs#ftp://username:password@ftp.example.com /mnt/ftp fuse rw,_netdev,allow_other 0 0
+
+# Mount with TLS encryption
+# rustftpfs#ftp://username:password@ftp.example.com /mnt/ftp fuse rw,_netdev,allow_other,tls 0 0
+
+# Read-only mount
+# rustftpfs#ftp://username:password@ftp.example.com /mnt/ftp fuse ro,_netdev,allow_other 0 0
+
+# Mount with custom options
+# rustftpfs#ftp://username:password@ftp.example.com /mnt/ftp fuse rw,_netdev,allow_other,uid=1000,gid=1000 0 0
+
+# Important notes:
+# 1. Replace 'username' and 'password' with your actual credentials
+# 2. Replace 'ftp.example.com' with your FTP server address
+# 3. Replace '/mnt/ftp' with your desired mount point
+# 4. The '_netdev' option is important for network filesystems
+# 5. Make sure the rustftpfs binary is in your PATH
+# 6. Ensure the mountpoint directory exists before mounting
+
+# To mount all entries from fstab:
+# sudo mount -a
+
+# To mount a specific entry:
+# sudo mount /mnt/ftp

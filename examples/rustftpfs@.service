@@ -1,0 +1,36 @@
+# systemd service file for rustftpfs
+# 
+# This file allows mounting FTP filesystems as systemd services.
+# Install this file to: /etc/systemd/system/rustftpfs@.service
+#
+# Usage:
+# sudo systemctl enable rustftpfs@myservice
+# sudo systemctl start rustftpfs@myservice
+#
+# Where 'myservice' is a configuration file name in /etc/rustftpfs/
+
+[Unit]
+Description=FTP Filesystem Mount (%i)
+Documentation=https://github.com/yourusername/rustftpfs
+After=network.target
+Requires=network.target
+
+[Service]
+Type=forking
+User=nobody
+Group=nogroup
+ExecStart=/usr/local/bin/rustftpfs --foreground --allow-other --read-only ${RUSTFTPFS_OPTIONS} ${RUSTFTPFS_URL} ${RUSTFTPFS_MOUNTPOINT}
+ExecStop=/bin/fusermount -u ${RUSTFTPFS_MOUNTPOINT}
+Restart=on-failure
+RestartSec=30
+EnvironmentFile=/etc/rustftpfs/%i.conf
+
+# Security settings
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=${RUSTFTPFS_MOUNTPOINT}
+
+[Install]
+WantedBy=multi-user.target

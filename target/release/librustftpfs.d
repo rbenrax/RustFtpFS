@@ -1,0 +1,1 @@
+/home/rafa/Desarrollo/rustftpfs/target/release/librustftpfs.rlib: /home/rafa/Desarrollo/rustftpfs/src/filesystem.rs /home/rafa/Desarrollo/rustftpfs/src/ftp.rs /home/rafa/Desarrollo/rustftpfs/src/lib.rs

@@ -1,0 +1,33 @@
+[package]
+name = "rustftpfs"
+version = "0.1.0"
+edition = "2021"
+authors = ["Kimi AI <kimi@moonshot.cn>"]
+description = "A FTP filesystem implementation in Rust similar to curlftpfs"
+repository = "https://github.com/yourusername/rustftpfs"
+license = "MIT"
+keywords = ["ftp", "fuse", "filesystem"]
+categories = ["filesystem"]
+
+[[bin]]
+name = "rustftpfs"
+path = "src/main.rs"
+
+[dependencies]
+fuser = "0.15"
+suppaftp = { version = "6.0", features = ["native-tls"] }
+clap = { version = "4.5", features = ["derive"] }
+env_logger = "0.11"
+libc = "0.2"
+log = "0.4"
+url = "2.5"
+anyhow = "1.0"
+thiserror = "2.0"
+
+[dev-dependencies]
+tempfile = "3.10"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
